@@ -25,6 +25,7 @@ import jsxNew from './transforms/jsx-new';
 import mangle from './transforms/mangle';
 import sequence from './transforms/sequence';
 import splitVariableDeclarations from './transforms/splitVariableDeclarations';
+import styledComponents from './transforms/styled-components';
 import unminify from './transforms/unminify';
 
 export interface WebcrackResult {
@@ -126,7 +127,7 @@ export async function webcrack(
     [
       // Have to run this after unminify to properly detect it
       options.deobfuscate ? [selfDefending, debugProtection] : [],
-      options.jsx ? [jsx, jsxNew] : [],
+      options.jsx ? [jsx, jsxNew, styledComponents] : [],
     ].flat()
   );
 
